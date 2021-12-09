@@ -1,7 +1,7 @@
 # planets-defender
 A Cascade 50 game: from a compilation of games originally written in 1983.
 
-This BASIC program here is presented in orginal form with a couple of notable REM's added to point to some errors. There are more.
+This BASIC program here is presented in orginal form with a couple of notable REM's added to point to some errors. There are more. ie) sound is not set up properly. It was necessary to add to the program for the sound to work.
 
 step00 is the base version.
 
