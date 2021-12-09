@@ -1,17 +1,39 @@
+BasicUpstart2(begin)
+
+begin:
 //   100 POKE53280,0:REM BORDER
+        lda #$00
+        sta $d020
 //   200 POKE53281,0:REM BACKGROUND
+        sta $d021   // A is already 0
 //   300 PRINT"{clear}{down}";:REM CLEAR THE SCREEN AND MOVE DOWN ONE LINE
+        jsr $e544
+        lda #$11
+        jsr $ffd2
 //   400 POKE649,1:REM 649=MAXIMUM KEYBOARD BUFFER SIZE
+        lda #$01
+        sta $0289
 //   500 POKE650,255:REM ALL KEYS WILL REPEAT
+        lda #$FF
+        sta $028A
 //   !-POKE 650,0 Normal keys only Repeat
 //   !-POKE 650,128 Enable all keys Repeat
 //   !-POKE 650,64 Disables Repeat of All Keys
 //   !-Bits #6-#7: %00 = Only crsr up,down,left,right,Insert,Delete and Space repeat; %01 = No key repeats; %1x = All keys repeat.
 //   600 POKE651,1:REM DELAY BETWEEN KEY REPEATS
+        lda #$01
+        sta $028B
 //   !-POKE651,255: 4 second delay to repeat
 //   700 POKE652,1:REM DELAY UNTIL FIRST KEY REPEAT BEGINS
+        lda #$01
+        sta $028C
 //   800 POKE198,0:REM NUMBER OF CHARS WAITING IN BUFFER
-//   900 PRINT"{space*10}N{cm y*17}M"
+        lda #$00
+        sta $c6
+        rts
+// NEED TO CONVERT CPS BASIC TOKENS
+
+//   900 PRINT" N{cm y*17}M"
 //  1000 PRINT"{space*6}{sh space}{space*3}{cm h}planets{space*2}defender{cm n}"
 //  1100 PRINT"{space*10}M{cm p*17}N"
 //  1200 PRINT"{down}you must defend your planet from a "
@@ -25,25 +47,34 @@
 //  2000 PRINT"{down}your planet is destroyed if you run out of missiles"
 //  2100 PRINT"if ufo is not destroyed it will return!"
 //  2200 PRINT"{down}{space*15}hit space"
+
+
 //  2300 GOSUB22100:REM SET UP SID
 //  2400 GOSUB22600:REM PLAY FREQ SWEEP
+
 //  2500 A$="":REM NULL THE A$
 //  2600 GETA$:REM GET A KEY
 //  2700 IFA$<>" "THEN2500:REM WAIT FOR SPACE
+
 //  2800 PRINT"{clear}{down}{space*8}if using the joystick:"
 //  2900 PRINT"{down}{reverse on}west {reverse off} left{space*6}{reverse on}east{reverse off} right"
 //  3000 PRINT"{down}{reverse on}north{reverse off} hyperthrust"
 //  3100 PRINT"{down*2}{space*8}if using the keyboard:"
 //  3200 PRINT"{down}{reverse on}<{reverse off}{space*2}left{space*8}{reverse on}>{reverse off} right"
 //  3300 PRINT"{down}{reverse on}?{reverse off} hyperthrust"
+
 //  3400 POKE53280,0:REM BORDER
 //  3500 POKE53281,0:REM BACKGROUND
+
 //  3600 PRINT"{down}{space*14}please wait"
 //  3700 PRINT"{space*10}N{cm y*17}M"
 //  3800 PRINT"{sh space}{space*9}{cm h}planets{space*2}defender{cm n}"
 //  3900 PRINT"{space*10}M{cm p*17}N"
+
 //  4000 GOTO24400:REM COTINUE SET UP
+
 //  4100 PRINT"{clear}{down*4}{space*4}set skill level 1=easy{space*2}7=hard:"
+
 //  4200 GETA$:REM GET A KEY
 //  4300 IFA$=""THEN4200:REM WAIT FOR A KEYPRESS
 //  4400 DZ=INT(VAL(A$)):REM DZ = A NUMBER VALUE OF THE KEYPRESS
