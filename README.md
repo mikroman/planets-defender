@@ -8,3 +8,5 @@ step02 attempts to split every line into separate command lines.
 step03 has a completely commented program with notes on errors and code segment omissions and some pertinent additions.
 step04 will be the next step - getting ready for ml conversion by setting strings, constants, and variables apart.
 step05 will be the first conversion step to assembly.
+You can find the two disk d64 set of Cascade50 from this search at Archive.org
+https://archive.org/search.php?query=cascade%2050
